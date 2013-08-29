@@ -6,18 +6,21 @@ Small (&lt;1K) Adobe Flash&#174; Player detection script distilled from SWFObjec
 Use
 ---
 
-Include or load the script, then call `getFlashVersion()`. This will always return a number:
+Include or load **flashdetect.min.js**, then call `getFlashVersion()`. This will always return a number:
 
 * If the Flash Player plugin is installed, a number denoting the major and minor version is returned, e.g. `9.125` or `11.8`
 * If no Flash Player is installed, `-1`
 
 This usage allows for easy, clean evaluation, like so:
 
-	if( getFlashVersion() >= 9.125 ){
-		// Flash approach
-	} else {
-		// Non-Flash approach
-	}
+	<script src="js/flashdetect.min.js"></script>
+	<script>
+		if( getFlashVersion() >= 9.125 ){
+			// Flash approach
+		} else {
+			// Non-Flash approach
+		}
+	</script>
 
 AMD
 ---
@@ -45,5 +48,7 @@ SWFObject's `getFlashPlayerVersion()` method returns an object with more detail 
 
 ### Small:
 If you're not sure whether a browser supports Flash, you don't want to load a 10k+ (minified!) script just to find out. What's more, we use Flash in different ways than we used to: mostly for [polyfills](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills) and enhancements like [ZeroClipboard](https://github.com/zeroclipboard/ZeroClipboard). These libraries tend to come with their own streamlined embedding code, and you may not want to load the polyfill unless you know it's supported.
+
+Only the vital bits of SWFObject's original method are retained. The 'release' number is gone, and repeated references are abstracted to variables for more optimal minification.
 
 The minified version of this script is about 800 bytes.
