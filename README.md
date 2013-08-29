@@ -12,6 +12,7 @@ Include or load the script, then call `getFlashVersion()`. This will always retu
 * If no Flash Player is installed, `-1`
 
 This usage allows for easy, clean evaluation, like so:
+
 	if( getFlashVersion() >= 9.125 ){
 		// Flash approach
 	} else {
@@ -21,7 +22,7 @@ This usage allows for easy, clean evaluation, like so:
 AMD
 ---
 
-If you roll with the cool kids and use a module loader like [requirejs](http://requirejs.org/), use the *flashdetect.amd.js* file. The closure will return a function, so you can just do:
+If you roll with the cool kids and use a module loader like [requirejs](http://requirejs.org/), use the **flashdetect.amd.js** file. The closure will return a function, so you can just do:
 
 	require( ['flashdetect.amd'], function(getFlashVersion){
 		
@@ -37,7 +38,7 @@ Objective
 The goal here is reliable and simple cross-browser Flash detection in as little code as possible.
 
 ### Reliabile:
-The original detection code comes from [SWFObject](https://code.google.com/p/swfobject/), a Flash embedding library that's been thoroughly vetted and widely used for years. Really, the SWFObject contributors did 99% of the work here and deserve all the credit.
+The original detection code comes from [SWFObject](https://code.google.com/p/swfobject/), a Flash embedding library that's been thoroughly vetted and widely used for years. Really, the SWFObject contributors did 99.9% of the work here and deserve all the credit.
 
 ### Simple:
 SWFObject's `getFlashPlayerVersion()` method returns an object with more detail than is usually needed. Flashdetect always returns a number, so you can more easily pop into an evaluation as described above.
