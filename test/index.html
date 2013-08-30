@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title>Flashdetect Test Page</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="../flashdetect.js"></script>
+		<script type="text/javascript" src="swfobject.js"></script>
+		<style>
+			body {font-family: Arial, Helvetica, sans-serif;}
+			td { padding: 6px 10px; }
+			p { max-width: 600px; }
+			.hlb { background-color: #FFFF99; }
+			.hlos { background-color: #99FFFF; }
+		</style>
+	</head>
+	<body>
+		<div id="suite">
+			<h1>Test suite</h1>
+			<p>User Agent: <span class="ua"></span></p>
+			<table>
+				<tr><td>SWFObject:</td><td class="soVersion result">...</td></tr>
+				<tr><td>FlashDetect:</td><td class="fdVersion result">...</td></tr>
+			</table>
+		</div>
+		<script>
+			$(function(){
+				var ua = navigator.userAgent,
+					raw = swfobject.getFlashPlayerVersion(),
+					converted = parseFloat(raw.major+'.'+raw.minor),
+					swfObjectResult = converted === 0 ? -1 : converted,
+					flashDetectResult = getFlashVersion(),
+					match = (swfObjectResult === flashDetectResult)
+					$results = $('.result');
+					
+				if( ua.indexOf('MSIE') >= 0 ){
+					ua = ua.replace(/(^.*?)(MSIE [\d.]*)(.*$)/i,
+						'$1<span class="hlb">$2</span>$3');
+				}
+				else if( ua.indexOf('Chrome') > 0 ){
+					ua = ua.replace(/(^.*?)(Chrome[ \/:]*[\d.]*)(.*$)/i,
+						'$1<span class="hlb">$2</span>$3');
+				}
+				else if( ua.indexOf('Safari') > 0 ){
+					ua = ua.replace(/(^.*?)(Safari[ \/:]*[\d.]*)(.*$)/i,
+						'$1<span class="hlb">$2</span>$3');
+				}
+				else if( ua.indexOf('Firefox') > 0 ){
+					ua = ua.replace(/(^.*?)(Firefox[ \/:]*[\d.]*)(.*$)/i,
+						'$1<span class="hlb">$2</span>$3');
+				}
+				
+				// os
+				ua = ua.replace(/(^.*?)(Windows.*?|Mac OS.*?)([;\)].*$)/i,'$1<span class="hlos">$2</span>$3');
+				
+				$('.ua').html( ua );
+									
+				$results.css('background-color',(match ? '#9F9' : '#F99' ));
+				$results.filter('.soVersion').text( swfObjectResult );
+				$results.filter('.fdVersion').text( flashDetectResult );
+				
+				if(!!console){ console.log( 'so: ',swfObjectResult,'  fd: ',flashDetectResult,'  match: ',match ); }
+// IE: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727;
+// 		.NET CLR 3.5.30729; .NET CLR 3.0.30729)
+
+// Chrome: User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko)
+//		Chrome/29.0.1547.62 Safari/537.36
+
+// Safari:  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.59.8 (KHTML, like Gecko)
+//		Version/5.1.9 Safari/534.59.8
+
+// FF: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:23.0) Gecko/20100101 Firefox/23.0
+			});
+		</script>
+	</body>
+</html>
