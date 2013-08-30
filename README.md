@@ -1,7 +1,7 @@
 flashdetect
 ===========
 
-Small (&lt;1K) Adobe Flash&#174; Player detection script distilled from SWFObject
+Tiny (&lt;1K) Adobe Flash&#174; Player detection script distilled from SWFObject
 
 Use
 ---
@@ -49,6 +49,16 @@ SWFObject's `getFlashPlayerVersion()` method returns an object with more detail 
 ### Small:
 If you're not sure whether a browser supports Flash, you don't want to load a 10k+ (minified!) script just to find out. What's more, we use Flash in different ways than we used to: mostly for [polyfills](https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills) and enhancements like [ZeroClipboard](https://github.com/zeroclipboard/ZeroClipboard). These libraries tend to come with their own streamlined embedding code, and you may not want to load the polyfill unless you know it's supported.
 
-Only the vital bits of SWFObject's original method are retained. The 'release' number is gone, and repeated references are abstracted to variables for more optimal minification.
+The minified version of this script is about 600 bytes.
 
-The minified version of this script is about 800 bytes.
+
+What's changed
+--------------
+Only the vital bits of SWFObject's original method are retained. Here's what's changed:
+
+* The 'release' number is gone (3rd value after major & minor versions).
+* Detection via the object element for non-IE browsers is not carried over. See `testPlayerVersion()` in SWFObject's source for more info.
+* Repeated references and Strings are abstracted to variables for better minification.
+* 'undefined' and null tests are replaced with `!!`, since all the expected values are objects.
+* Regular expressions were consolodated.
+
