@@ -41,7 +41,7 @@ Objective
 The goal here is reliable and simple cross-browser Flash detection in as little code as possible.
 
 ### Reliabile:
-The original detection code comes from [SWFObject](https://code.google.com/p/swfobject/), a Flash embedding library that's been thoroughly vetted and widely used for years. Really, the SWFObject contributors did 99.9% of the work here and deserve all the credit.
+The original detection code comes from [SWFObject](https://code.google.com/p/swfobject/), a Flash embedding library that's been thoroughly vetted and widely used for years. Really, the SWFObject contributors did most of the hard work here and deserve commensurate credit.
 
 ### Simple:
 SWFObject's `getFlashPlayerVersion()` method returns an object with more detail than is usually needed. Flashdetect always returns a number, so you can more easily pop into an evaluation as described above.
@@ -54,11 +54,11 @@ The minified version of this script is about 600 bytes.
 
 What's changed
 --------------
-Only the vital bits of SWFObject's original method are retained. Here's what's changed:
+Only the vital bits of SWFObject's original detection are retained. Here's what's changed:
 
 * The 'release' number is gone (3rd value after major & minor versions).
 * Detection via the object element for non-IE browsers is not carried over. See `testPlayerVersion()` in SWFObject's source for more info.
 * Repeated references and Strings are abstracted to variables for better minification.
-* 'undefined' and null tests are replaced with `!!`, since all the expected values are objects.
+* 'undefined' and null tests are replaced with `!!`, since all the values are expected as objects.
 * Regular expressions were consolodated.
 
